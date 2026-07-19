@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact â€” MD Cakes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="data-loader.js"></script>
+<style>
+  .contact-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start; }
+  .contact-form{ display:flex; flex-direction:column; gap:18px; }
+  .field label{ display:block; font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--choc-soft); margin-bottom:8px; }
+  .field input, .field select, .field textarea{
+    width:100%; padding:14px 16px; border-radius:12px; border:1.5px solid var(--line);
+    background:#fff; font-family:'Quicksand'; font-size:.98rem; color:var(--choc);
+  }
+  .field textarea{ min-height:110px; resize:vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color:var(--raspberry); }
+  .contact-form .btn-primary{ border:none; cursor:pointer; align-self:flex-start; margin-top:6px; font-size:1rem; }
+  .contact-side .info-row{ margin-bottom:26px; }
+  .contact-side .info-row .ic{ color:var(--raspberry-deep); }
+  .contact-side .info-row h4{ color:var(--raspberry-deep); }
+  .whatsapp-btn{
+    display:inline-flex; align-items:center; gap:10px; background:#25D366; color:#fff;
+    padding:14px 26px; border-radius:100px; font-weight:700; margin-top:10px;
+  }
+  @media (max-width:900px){ .contact-wrap{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
+        <path d="M50 12 L88 82 A46 46 0 0 1 12 82 Z" fill="#C4506D"/>
+        <path d="M20 66 Q50 56 80 66" stroke="#FBF3EC" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="18" r="4" fill="#E8B04B"/>
+      </svg>
+      <span class="brand-name">MD <span>Cakes</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="menu.html">Menu</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Order a Cake</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="eyebrow">Contact &amp; Orders</div>
+  <h1>Let's plan your cake</h1>
+  <p class="lead">Send us your details below, or reach out directly by phone or WhatsApp â€” we usually reply within a day.</p>
+</section>
+
+<section class="section" style="padding-top:20px;">
+  <div class="contact-wrap">
+
+    <form class="contact-form" id="orderForm" onsubmit="return sendOrderToWhatsApp(event);">
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="07X XXX XXXX" required>
+      </div>
+      <div class="field">
+        <label for="occasion">Occasion</label>
+        <select id="occasion" name="occasion">
+          <option>Birthday</option>
+          <option>Wedding</option>
+          <option>Anniversary</option>
+          <option>Cupcakes / Small Treats</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="date">Date Needed</label>
+        <input type="date" id="date" name="date">
+      </div>
+      <div class="field">
+        <label for="details">Cake Details</label>
+        <textarea id="details" name="details" placeholder="Size, flavour, design ideas, any reference photos..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:10px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Order via WhatsApp
+      </button>
+    </form>
+
+    <div class="contact-side">
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <h4>Address</h4>
+          <p style="color:var(--choc-soft);" data-field="address">Loading...</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92Z"/></svg>
+        <div>
+          <h4>Phone</h4>
+          <p style="color:var(--choc-soft);"><a href="#" data-field="phoneHref"><span data-field="phone">Loading...</span></a></p>
+        </div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <div>
+          <h4>Email</h4>
+          <p style="color:var(--choc-soft);"><a href="#" data-field="emailHref"><span data-field="email">Loading...</span></a></p>
+        </div>
+      </div>
+      <a class="whatsapp-btn" href="#" data-field="whatsappHref" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="brand-name display" style="font-size:1.4rem;">MD Cakes</span>
+      <p class="tag">Handmade cakes from our kitchen in Kopay Irupalai, near Pyramid Education Centre.</p>
+    </div>
+    <div>
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Our Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact / Order</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Get In Touch</h5>
+      <ul>
+        <li><a href="#" data-field="phoneFooter">Loading...</a></li>
+        <li><a href="#" data-field="emailFooter">Loading...</a></li>
+        <li data-field="addressFooter">Loading...</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Â© 2026 MD Cakes. All rights reserved.</div>
+</footer>
+
+<script>
+  let OWNER_WHATSAPP_NUMBER = "94767041647"; // fallback, overwritten by data.json
+
+  loadSiteData().then(data => {
+    applyContactToPage(data.contact);
+    if (data.contact && data.contact.whatsapp) {
+      OWNER_WHATSAPP_NUMBER = data.contact.whatsapp;
+    }
+  });
+
+  function sendOrderToWhatsApp(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const occasion = document.getElementById('occasion').value;
+    const date = document.getElementById('date').value;
+    const details = document.getElementById('details').value.trim();
+
+    if (!name || !phone) {
+      alert('Please fill in your name and phone number.');
+      return false;
+    }
+
+    let message = `Hi MD Cakes, I'd like to place an order.%0A%0A`;
+    message += `*Name:* ${encodeURIComponent(name)}%0A`;
+    message += `*Phone:* ${encodeURIComponent(phone)}%0A`;
+    message += `*Occasion:* ${encodeURIComponent(occasion)}%0A`;
+    if (date) message += `*Date Needed:* ${encodeURIComponent(date)}%0A`;
+    if (details) message += `*Details:* ${encodeURIComponent(details)}%0A`;
+
+    const waUrl = `https://wa.me/${OWNER_WHATSAPP_NUMBER}?text=${message}`;
+    window.open(waUrl, '_blank');
+    return false;
+  }
+</script>
+<script src="main.js"></script>
+</body>
+</html>
