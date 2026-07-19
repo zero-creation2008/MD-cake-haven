@@ -3,47 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin â€” MD Cakes</title>
+<title>Admin — MD Cakes</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  body{ background:var(--cream-deep); }
+  body{ background:var(--bg-card); }
   .admin-wrap{ max-width:900px; margin:0 auto; padding:40px 24px 100px; }
   .admin-header{ margin-bottom:36px; }
   .admin-header h1{ font-size:2rem; margin-bottom:8px; }
-  .admin-header p{ color:var(--choc-soft); }
+  .admin-header p{ color:var(--ink-soft); }
 
   .panel{
-    background:#fff; border-radius:20px; padding:28px 30px; margin-bottom:26px;
+    background:var(--bg-elevated); border-radius:20px; padding:28px 30px; margin-bottom:26px;
     border:1px solid var(--line);
   }
   .panel h2{ font-size:1.2rem; margin-bottom:18px; display:flex; align-items:center; gap:10px; }
   .panel h2 .badge{
     font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; font-weight:700;
-    background:var(--cream-deep); color:var(--raspberry-deep); padding:3px 10px; border-radius:100px;
+    background:var(--bg-card); color:var(--gold); padding:3px 10px; border-radius:100px;
   }
 
   .row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
   .row.full{ grid-template-columns:1fr; }
-  label{ display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--choc-soft); margin-bottom:6px; }
+  label{ display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin-bottom:6px; }
   input, textarea{
     width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid var(--line);
-    font-family:'Quicksand'; font-size:.95rem; color:var(--choc); background:var(--cream);
+    font-family:'Quicksand'; font-size:.95rem; color:var(--ink); background:var(--bg-elevated);
   }
   textarea{ min-height:70px; resize:vertical; }
-  input:focus, textarea:focus{ outline:none; border-color:var(--raspberry); }
+  input:focus, textarea:focus{ outline:none; border-color:var(--gold-deep); }
 
   .btn{
     border:none; cursor:pointer; font-family:'Quicksand'; font-weight:700; font-size:.9rem;
     padding:11px 22px; border-radius:100px; transition:transform .15s, opacity .15s;
   }
   .btn:hover{ transform:translateY(-2px); }
-  .btn-save{ background:var(--raspberry); color:#fff; }
-  .btn-add{ background:var(--sage); color:#fff; }
+  .btn-save{ background:var(--gold-deep); color:#fff; }
+  .btn-add{ background:var(--gold); color:#fff; }
   .btn-delete{ background:transparent; color:#B0433F; border:1.5px solid #B0433F; padding:9px 16px; font-size:.82rem; }
-  .btn-secondary{ background:var(--choc); color:var(--cream); }
+  .btn-secondary{ background:var(--ink); color:var(--bg-elevated); }
   .btn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
 
   .cat-block{ border:1px dashed var(--line); border-radius:14px; padding:20px; margin-bottom:18px; }
@@ -59,20 +59,20 @@
   .toolbar{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
 
   .login-box{
-    max-width:440px; margin:80px auto; background:#fff; border-radius:20px; padding:36px 32px;
+    max-width:440px; margin:80px auto; background:var(--bg-elevated); border-radius:20px; padding:36px 32px;
     border:1px solid var(--line); text-align:center;
   }
   .login-box h1{ font-size:1.5rem; margin-bottom:10px; }
-  .login-box p{ color:var(--choc-soft); font-size:.92rem; margin-bottom:22px; line-height:1.5; }
+  .login-box p{ color:var(--ink-soft); font-size:.92rem; margin-bottom:22px; line-height:1.5; }
   .login-box input{ margin-bottom:14px; }
   .login-box .btn-save{ width:100%; }
   .login-note{
-    background:var(--cream-deep); border-radius:12px; padding:14px 16px; font-size:.82rem;
-    color:var(--choc-soft); text-align:left; margin-top:18px; line-height:1.6;
+    background:var(--bg-card); border-radius:12px; padding:14px 16px; font-size:.82rem;
+    color:var(--ink-soft); text-align:left; margin-top:18px; line-height:1.6;
   }
 
   .status-bar{
-    position:fixed; bottom:0; left:0; right:0; background:var(--choc); color:var(--cream);
+    position:fixed; bottom:0; left:0; right:0; background:var(--ink); color:var(--bg-elevated);
     padding:14px 24px; display:none; align-items:center; justify-content:space-between; gap:16px;
     font-size:.9rem; z-index:50;
   }
@@ -97,19 +97,19 @@
     <input type="text" id="ghRepo" placeholder="zero-creation2008/MD-CAKE-HAVEN" value="zero-creation2008/MD-CAKE-HAVEN">
     <button class="btn btn-save" onclick="connectGitHub()">Connect &amp; Unlock</button>
     <div class="login-note">
-      <strong>First time?</strong> Create a token at GitHub â†’ Settings â†’ Developer settings â†’ Personal access tokens â†’ Fine-grained tokens. Give it <strong>read + write access to "Contents"</strong> for this one repository only. Your token stays in this browser only â€” don't share it.
+      <strong>First time?</strong> Create a token at GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens. Give it <strong>read + write access to "Contents"</strong> for this one repository only. Your token stays in this browser only — don't share it.
     </div>
   </div>
 
   <!-- ============ ADMIN PANEL (shown after login) ============ -->
   <div id="adminScreen" style="display:none;">
     <div class="admin-header">
-      <h1>MD Cakes â€” Admin Panel</h1>
+      <h1>MD Cakes — Admin Panel</h1>
       <p>Edit your cakes, prices and contact details. Click <strong>Save Changes</strong> to publish live for everyone.</p>
     </div>
 
     <div class="top-actions">
-      <span id="connectedAs" style="color:var(--choc-soft); font-size:.88rem;"></span>
+      <span id="connectedAs" style="color:var(--ink-soft); font-size:.88rem;"></span>
       <button class="btn btn-secondary" onclick="logout()">Disconnect</button>
     </div>
 
@@ -148,6 +148,22 @@
           <textarea id="f_hours"></textarea>
         </div>
       </div>
+      <div class="row">
+        <div>
+          <label for="f_instagram">Instagram URL (leave blank to hide icon)</label>
+          <input type="text" id="f_instagram" placeholder="https://instagram.com/yourpage">
+        </div>
+        <div>
+          <label for="f_facebook">Facebook URL (leave blank to hide icon)</label>
+          <input type="text" id="f_facebook" placeholder="https://facebook.com/yourpage">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="f_youtube">YouTube URL (leave blank to hide icon)</label>
+          <input type="text" id="f_youtube" placeholder="https://youtube.com/@yourchannel">
+        </div>
+      </div>
     </div>
 
     <!-- MENU / CAKES -->
@@ -166,8 +182,8 @@
     </div>
 
     <div class="toolbar" style="margin-bottom:60px;">
-      <button class="btn btn-save" id="saveBtn" onclick="saveToGitHub()">ðŸ’¾ Save Changes (Publish Live)</button>
-      <button class="btn btn-secondary" onclick="reloadData()">â†º Reload from Live Site</button>
+      <button class="btn btn-save" id="saveBtn" onclick="saveToGitHub()">💾 Save Changes (Publish Live)</button>
+      <button class="btn btn-secondary" onclick="reloadData()">↺ Reload from Live Site</button>
     </div>
   </div>
 
@@ -175,7 +191,7 @@
 
 <div class="status-bar" id="statusBar">
   <span id="statusText"></span>
-  <button class="btn" style="background:transparent; color:var(--cream); border:1px solid var(--cream);" onclick="hideStatus()">Close</button>
+  <button class="btn" style="background:transparent; color:var(--bg-elevated); border:1px solid var(--bg-elevated);" onclick="hideStatus()">Close</button>
 </div>
 
 <script>
@@ -247,6 +263,9 @@
     document.getElementById('f_whatsapp').value = data.contact.whatsapp || '';
     document.getElementById('f_email').value = data.contact.email || '';
     document.getElementById('f_hours').value = data.contact.hours || '';
+    document.getElementById('f_instagram').value = data.contact.instagram || '';
+    document.getElementById('f_facebook').value = data.contact.facebook || '';
+    document.getElementById('f_youtube').value = data.contact.youtube || '';
     document.getElementById('f_menuNote').value = data.menuNote || '';
 
     const container = document.getElementById('categoriesContainer');
@@ -294,7 +313,7 @@
         <input type="text" class="item-price" value="${escapeAttr(item.price)}">
       </div>
       <div style="padding-top:22px;">
-        <button class="btn btn-delete" onclick="deleteItem(${ci}, ${ii})">âœ•</button>
+        <button class="btn btn-delete" onclick="deleteItem(${ci}, ${ii})">✕</button>
       </div>
     `;
     itemsContainer.appendChild(row);
@@ -308,6 +327,9 @@
     currentData.contact.whatsapp = document.getElementById('f_whatsapp').value;
     currentData.contact.email = document.getElementById('f_email').value;
     currentData.contact.hours = document.getElementById('f_hours').value;
+    currentData.contact.instagram = document.getElementById('f_instagram').value;
+    currentData.contact.facebook = document.getElementById('f_facebook').value;
+    currentData.contact.youtube = document.getElementById('f_youtube').value;
     currentData.menuNote = document.getElementById('f_menuNote').value;
 
     const catBlocks = document.querySelectorAll('.cat-block');
@@ -385,12 +407,12 @@
 
       const result = await res.json();
       currentFileSha = result.content.sha;
-      showStatus('Saved! Changes are live (GitHub Pages may take 1â€“2 minutes to update).', 'success');
+      showStatus('Saved! Changes are live (GitHub Pages may take 1–2 minutes to update).', 'success');
     } catch (e) {
       showStatus('Save failed: ' + e.message, 'error');
     } finally {
       saveBtn.disabled = false;
-      saveBtn.textContent = 'ðŸ’¾ Save Changes (Publish Live)';
+      saveBtn.textContent = '💾 Save Changes (Publish Live)';
     }
   }
 

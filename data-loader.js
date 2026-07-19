@@ -1,5 +1,5 @@
 // ============================================================
-// MD Cakes – Shared Data Loader
+// MD Cakes — Shared Data Loader
 // Fetches data.json (cakes, prices, contact info) and exposes
 // it to every page. Falls back to sensible defaults if the
 // file can't be loaded (e.g. opened locally without a server).
@@ -23,7 +23,11 @@ async function loadSiteData() {
     // Cache-bust so visitors always get the latest saved data
     const res = await fetch(`data.json?t=${Date.now()}`);
     if (!res.ok) throw new Error("data.json not found");
-    return await res.json();
+    // Explicitly decode as UTF-8 regardless of server-sent headers,
+    // so characters like — and – never turn into garbled symbols.
+    const buffer = await res.arrayBuffer();
+    const text = new TextDecoder('utf-8').decode(buffer);
+    return JSON.parse(text);
   } catch (e) {
     console.warn("Could not load data.json, using built-in defaults.", e);
     return SITE_DATA_DEFAULTS;
@@ -43,7 +47,22 @@ function applyContactToPage(contact) {
   document.querySelectorAll('[data-field="phoneFooter"]').forEach(el => { el.textContent = contact.phone; el.href = `tel:${contact.phoneDial}`; });
   document.querySelectorAll('[data-field="emailFooter"]').forEach(el => { el.textContent = contact.email; el.href = `mailto:${contact.email}`; });
   document.querySelectorAll('[data-field="addressFooter"]').forEach(el => el.innerHTML = contact.address);
+
+  // Social links — hide the icon entirely if no URL is set
+  applySocialLink('instagram', contact.instagram);
+  applySocialLink('facebook', contact.facebook);
+  applySocialLink('youtube', contact.youtube);
 }
+
+function applySocialLink(platform, url) {
+  document.querySelectorAll(`[data-social="${platform}"]`).forEach(el => {
+    if (url && url.trim()) {
+      el.href = url.trim();
+      el.style.display = '';
+    } else {
+      el.style.display = 'none';
+    }
+  });
 
 function renderMenu(data) {
   const container = document.getElementById('menuContainer');

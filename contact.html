@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact â€” MD Cakes</title>
+<title>Contact — MD Cakes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -11,17 +11,19 @@
 <style>
   .contact-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start; }
   .contact-form{ display:flex; flex-direction:column; gap:18px; }
-  .field label{ display:block; font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--choc-soft); margin-bottom:8px; }
+  .field label{ display:block; font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:8px; }
   .field input, .field select, .field textarea{
     width:100%; padding:14px 16px; border-radius:12px; border:1.5px solid var(--line);
-    background:#fff; font-family:'Quicksand'; font-size:.98rem; color:var(--choc);
+    background:var(--bg-card); font-family:'Quicksand'; font-size:.98rem; color:var(--ink);
   }
+  .field select option{ background:var(--bg-card); color:var(--ink); }
+  .field input::placeholder, .field textarea::placeholder{ color:rgba(184,170,150,0.5); }
   .field textarea{ min-height:110px; resize:vertical; }
-  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color:var(--raspberry); }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color:var(--gold); }
   .contact-form .btn-primary{ border:none; cursor:pointer; align-self:flex-start; margin-top:6px; font-size:1rem; }
   .contact-side .info-row{ margin-bottom:26px; }
-  .contact-side .info-row .ic{ color:var(--raspberry-deep); }
-  .contact-side .info-row h4{ color:var(--raspberry-deep); }
+  .contact-side .info-row .ic{ color:var(--gold); }
+  .contact-side .info-row h4{ color:var(--gold); }
   .whatsapp-btn{
     display:inline-flex; align-items:center; gap:10px; background:#25D366; color:#fff;
     padding:14px 26px; border-radius:100px; font-weight:700; margin-top:10px;
@@ -35,9 +37,9 @@
   <nav>
     <a href="index.html" class="brand">
       <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
-        <path d="M50 12 L88 82 A46 46 0 0 1 12 82 Z" fill="#C4506D"/>
-        <path d="M20 66 Q50 56 80 66" stroke="#FBF3EC" stroke-width="6" fill="none" stroke-linecap="round"/>
-        <circle cx="50" cy="18" r="4" fill="#E8B04B"/>
+        <path d="M50 12 L88 82 A46 46 0 0 1 12 82 Z" fill="#B8863E"/>
+        <path d="M20 66 Q50 56 80 66" stroke="#F3ECE0" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="18" r="4" fill="#D4AF6A"/>
       </svg>
       <span class="brand-name">MD <span>Cakes</span></span>
     </a>
@@ -56,7 +58,7 @@
 <section class="page-hero">
   <div class="eyebrow">Contact &amp; Orders</div>
   <h1>Let's plan your cake</h1>
-  <p class="lead">Send us your details below, or reach out directly by phone or WhatsApp â€” we usually reply within a day.</p>
+  <p class="lead">Send us your details below, or reach out directly by phone or WhatsApp — we usually reply within a day.</p>
 </section>
 
 <section class="section" style="padding-top:20px;">
@@ -100,21 +102,21 @@
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         <div>
           <h4>Address</h4>
-          <p style="color:var(--choc-soft);" data-field="address">Loading...</p>
+          <p style="color:var(--ink-soft);" data-field="address">Loading...</p>
         </div>
       </div>
       <div class="info-row">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92Z"/></svg>
         <div>
           <h4>Phone</h4>
-          <p style="color:var(--choc-soft);"><a href="#" data-field="phoneHref"><span data-field="phone">Loading...</span></a></p>
+          <p style="color:var(--ink-soft);"><a href="#" data-field="phoneHref"><span data-field="phone">Loading...</span></a></p>
         </div>
       </div>
       <div class="info-row">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
         <div>
           <h4>Email</h4>
-          <p style="color:var(--choc-soft);"><a href="#" data-field="emailHref"><span data-field="email">Loading...</span></a></p>
+          <p style="color:var(--ink-soft);"><a href="#" data-field="emailHref"><span data-field="email">Loading...</span></a></p>
         </div>
       </div>
       <a class="whatsapp-btn" href="#" data-field="whatsappHref" target="_blank" rel="noopener">
@@ -130,6 +132,17 @@
     <div>
       <span class="brand-name display" style="font-size:1.4rem;">MD Cakes</span>
       <p class="tag">Handmade cakes from our kitchen in Kopay Irupalai, near Pyramid Education Centre.</p>
+      <div class="social-row">
+        <a href="#" data-social="instagram" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F3ECE0" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#F3ECE0" stroke="none"/></svg>
+        </a>
+        <a href="#" data-social="facebook" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="#F3ECE0"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.3-1.5 1.6-1.5H16.5V4.3C16.1 4.2 15.1 4 14 4c-2.3 0-3.9 1.4-3.9 4v2.5H7.5v3H10V21h3.5z"/></svg>
+        </a>
+        <a href="#" data-social="youtube" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="#F3ECE0"><path d="M22 12s0-3.2-.4-4.7c-.2-.8-.9-1.5-1.7-1.7C18.4 5 12 5 12 5s-6.4 0-7.9.6c-.8.2-1.5.9-1.7 1.7C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.8.9 1.5 1.7 1.7C5.6 19 12 19 12 19s6.4 0 7.9-.6c.8-.2 1.5-.9 1.7-1.7.4-1.5.4-4.7.4-4.7z"/><path d="M10 15V9l5.2 3-5.2 3z" fill="#000000"/></svg>
+        </a>
+      </div>
     </div>
     <div>
       <h5>Explore</h5>
@@ -150,7 +163,7 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">Â© 2026 MD Cakes. All rights reserved.</div>
+  <div class="footer-bottom">© 2026 MD Cakes. All rights reserved.</div>
 </footer>
 
 <script>

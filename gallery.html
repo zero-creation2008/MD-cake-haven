@@ -13,14 +13,9 @@
   .g-item{
     aspect-ratio:1; border-radius:20px; overflow:hidden; position:relative;
     display:flex; align-items:center; justify-content:center;
-    border:1px solid var(--line); background:var(--cream-deep);
+    border:1px solid var(--line); background:var(--bg-card);
   }
   .g-item img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .g-item svg{ width:60%; height:60%; }
-  .g-item span{
-    position:absolute; bottom:14px; left:14px; color:#fff; font-size:.82rem; font-weight:700;
-    background:rgba(58,36,24,0.55); padding:5px 12px; border-radius:100px;
-  }
   @media (max-width:900px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px){ .gallery-grid{ grid-template-columns:1fr; } }
 </style>
@@ -31,9 +26,9 @@
   <nav>
     <a href="index.html" class="brand">
       <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
-        <path d="M50 12 L88 82 A46 46 0 0 1 12 82 Z" fill="#C4506D"/>
-        <path d="M20 66 Q50 56 80 66" stroke="#FBF3EC" stroke-width="6" fill="none" stroke-linecap="round"/>
-        <circle cx="50" cy="18" r="4" fill="#E8B04B"/>
+        <path d="M50 12 L88 82 A46 46 0 0 1 12 82 Z" fill="#B8863E"/>
+        <path d="M20 66 Q50 56 80 66" stroke="#F3ECE0" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="18" r="4" fill="#D4AF6A"/>
       </svg>
       <span class="brand-name">MD <span>Cakes</span></span>
     </a>
@@ -52,7 +47,6 @@
 <section class="page-hero">
   <div class="eyebrow">Gallery</div>
   <h1>A few of our favourites</h1>
-  <p class="lead">Swap these placeholders for real photos of your cakes — just replace each block with an &lt;img&gt; tag pointing to your photo file.</p>
 </section>
 
 <section class="section" style="padding-top:20px;">
@@ -60,21 +54,43 @@
     <!-- Photos are injected here automatically by script below -->
   </div>
 
-  <p id="galleryEmpty" style="display:none; color:var(--choc-soft); text-align:center; padding:40px 0;">
-    No photos yet — add images to the GitHub folder to see them here.
-  </p>
-
-  <div class="menu-note" style="background:var(--cream-deep); border-radius:18px; padding:24px 28px; margin-top:44px; font-size:.92rem; color:var(--choc-soft); max-width:820px;">
+  <div class="menu-note" style="background:var(--bg-card); border:1px solid var(--line); border-radius:18px; padding:24px 28px; margin-top:44px; font-size:.92rem; color:var(--ink-soft); max-width:820px;">
     <!-- EDIT NOTE -->
     Want to see more of our recent work? Follow us on Instagram/Facebook or message us directly — we're always happy to share past orders similar to what you have in mind.
   </div>
 </section>
+
+<!-- ============ LIGHTBOX POPUP ============ -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="if(event.target===this) closeLightbox()">
+  <div class="lightbox-box">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-body">
+      <h3 id="lightboxTitle">Cake Design</h3>
+      <p>Like this design? Send us the details and we'll quote you for your occasion.</p>
+      <div class="lightbox-actions">
+        <a href="#" id="lightboxWhatsApp" class="btn-primary" target="_blank" rel="noopener">Order This Design via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
     <div>
       <span class="brand-name display" style="font-size:1.4rem;">MD Cakes</span>
       <p class="tag">Handmade cakes from our kitchen in Kopay Irupalai, near Pyramid Education Centre.</p>
+      <div class="social-row">
+        <a href="#" data-social="instagram" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F3ECE0" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#F3ECE0" stroke="none"/></svg>
+        </a>
+        <a href="#" data-social="facebook" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="#F3ECE0"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.3-1.5 1.6-1.5H16.5V4.3C16.1 4.2 15.1 4 14 4c-2.3 0-3.9 1.4-3.9 4v2.5H7.5v3H10V21h3.5z"/></svg>
+        </a>
+        <a href="#" data-social="youtube" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="#F3ECE0"><path d="M22 12s0-3.2-.4-4.7c-.2-.8-.9-1.5-1.7-1.7C18.4 5 12 5 12 5s-6.4 0-7.9.6c-.8.2-1.5.9-1.7 1.7C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.8.9 1.5 1.7 1.7C5.6 19 12 19 12 19s6.4 0 7.9-.6c.8-.2 1.5-.9 1.7-1.7.4-1.5.4-4.7.4-4.7z"/><path d="M10 15V9l5.2 3-5.2 3z" fill="#000000"/></svg>
+        </a>
+      </div>
     </div>
     <div>
       <h5>Explore</h5>
@@ -105,24 +121,23 @@
   // https://raw.githubusercontent.com/USERNAME/REPO/main/photos/
   // Photos must be named (1).jpg, (2).jpg, (3).jpg ... in that folder
   // ============================================================
-  const PHOTO_BASE_URL = "https://raw.githubusercontent.com/zero-creation2008/MD-CAKE-HAVEN/main/photos/";
+  const PHOTO_BASE_URL = "https://raw.githubusercontent.com/zero-creation2008/MD-cake-haven/main/Photos/";
   const MAX_PHOTOS_TO_CHECK = 1000;
 
+  let OWNER_WHATSAPP_NUMBER = "94767041647"; // fallback, overwritten by data.json
+
   const grid = document.getElementById('galleryGrid');
-  const emptyMsg = document.getElementById('galleryEmpty');
   let foundCount = 0;
   let checkedCount = 0;
 
   function checkDone() {
     checkedCount++;
-    if (checkedCount === MAX_PHOTOS_TO_CHECK && foundCount === 0) {
-      emptyMsg.style.display = 'block';
-    }
   }
 
   for (let i = 1; i <= MAX_PHOTOS_TO_CHECK; i++) {
     const img = new Image();
-    const url = `${PHOTO_BASE_URL}(${i}).jpg`;
+    const url = `${PHOTO_BASE_URL}${encodeURIComponent(` (${i}).jpg`)}`;
+    const designName = `Cake Design (${i})`;
 
     img.onload = function () {
       const item = document.createElement('div');
@@ -132,6 +147,7 @@
       displayImg.alt = `MD Cakes photo ${i}`;
       displayImg.loading = 'lazy';
       item.appendChild(displayImg);
+      item.addEventListener('click', () => openLightbox(url, designName));
       grid.appendChild(item);
       foundCount++;
       checkDone();
@@ -144,10 +160,38 @@
 
     img.src = url;
   }
+
+  // ---------- Lightbox ----------
+  function openLightbox(imgUrl, designName) {
+    document.getElementById('lightboxImg').src = imgUrl;
+    document.getElementById('lightboxImg').alt = designName;
+    document.getElementById('lightboxTitle').textContent = designName;
+
+    const message = `Hi MD Cakes, I saw *${designName}* in your gallery and I'd like to order this design. Is it available?`;
+    const waUrl = `https://wa.me/${OWNER_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    document.getElementById('lightboxWhatsApp').href = waUrl;
+
+    document.getElementById('lightboxOverlay').classList.add('show');
+    document.body.classList.add('locked');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightboxOverlay').classList.remove('show');
+    document.body.classList.remove('locked');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 </script>
 <script src="main.js"></script>
 <script>
-  loadSiteData().then(data => applyContactToPage(data.contact));
+  loadSiteData().then(data => {
+    applyContactToPage(data.contact);
+    if (data.contact && data.contact.whatsapp) {
+      OWNER_WHATSAPP_NUMBER = data.contact.whatsapp;
+    }
+  });
 </script>
 </body>
 </html>
