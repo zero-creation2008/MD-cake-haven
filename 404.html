@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found – MD Cakes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .error-container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 40px 28px;
+    text-align: center;
+  }
+  .error-code {
+    font-family: 'Fraunces', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--raspberry);
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .error-message {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--choc);
+  }
+  .error-text {
+    color: var(--choc-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .error-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
+        <path d="M50 12 L88 82 A46 46 0 0 1 12 82 Z" fill="#C4506D"/>
+        <path d="M20 66 Q50 56 80 66" stroke="#FBF3EC" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="18" r="4" fill="#E8B04B"/>
+      </svg>
+      <span class="brand-name">MD <span>Cakes</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="menu.html">Menu</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Order a Cake</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<div class="error-container">
+  <div class="error-code">404</div>
+  <h1 class="error-message">Page Not Found</h1>
+  <p class="error-text">The page you're looking for doesn't exist – but our cakes do! Head back to the home page to place your order.</p>
+  <div class="error-actions">
+    <a href="index.html" class="btn-primary">Go Home</a>
+    <a href="menu.html" class="btn-ghost">View Menu</a>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

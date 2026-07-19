@@ -5,22 +5,22 @@
     "phoneDial": "+94767041647",
     "whatsapp": "94767041647",
     "email": "seronjeyaseelan@gmail.com",
-    "hours": "Mon â€“ Sat: 9:00 AM â€“ 8:00 PM<br>Sunday: 10:00 AM â€“ 4:00 PM"
+    "hours": "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM"
   },
   "categories": [
     {
       "name": "Birthday Cakes",
       "items": [
-        { "name": "Classic Round â€” 1kg", "desc": "Vanilla, chocolate or marble base with simple buttercream finish.", "price": "Rs. 2,500" },
-        { "name": "Themed Design â€” 1.5kg", "desc": "Custom character, colour scheme or theme, hand-piped detail.", "price": "Rs. 4,500" },
-        { "name": "Photo Print Cake â€” 1kg", "desc": "Edible photo print on a fondant or buttercream base.", "price": "Rs. 3,800" }
+        { "name": "Classic Round – 1kg", "desc": "Vanilla, chocolate or marble base with simple buttercream finish.", "price": "Rs. 2,500" },
+        { "name": "Themed Design – 1.5kg", "desc": "Custom character, colour scheme or theme, hand-piped detail.", "price": "Rs. 4,500" },
+        { "name": "Photo Print Cake – 1kg", "desc": "Edible photo print on a fondant or buttercream base.", "price": "Rs. 3,800" }
       ]
     },
     {
       "name": "Wedding & Tiered Cakes",
       "items": [
-        { "name": "Two-Tier Cake", "desc": "Serves approx. 40â€“50 guests. Design and flavour fully customisable.", "price": "From Rs. 12,000" },
-        { "name": "Three-Tier Cake", "desc": "Serves approx. 70â€“90 guests. Includes consultation and tasting.", "price": "From Rs. 20,000" }
+        { "name": "Two-Tier Cake", "desc": "Serves approx. 40–50 guests. Design and flavour fully customisable.", "price": "From Rs. 12,000" },
+        { "name": "Three-Tier Cake", "desc": "Serves approx. 70–90 guests. Includes consultation and tasting.", "price": "From Rs. 20,000" }
       ]
     },
     {
@@ -33,9 +33,9 @@
     {
       "name": "Eggless Range",
       "items": [
-        { "name": "Eggless Cake â€” 1kg", "desc": "Available in vanilla, chocolate or butterscotch.", "price": "Rs. 2,800" }
+        { "name": "Eggless Cake – 1kg", "desc": "Available in vanilla, chocolate or butterscotch.", "price": "Rs. 2,800" }
       ]
     }
   ],
-  "menuNote": "Custom sizes, flavours and designs beyond this list are always welcome â€” message us on WhatsApp or call to discuss your order. A minimum of 2 days' notice is appreciated for custom designs."
+  "menuNote": "Custom sizes, flavours and designs beyond this list are always welcome – message us on WhatsApp or call to discuss your order. A minimum of 2 days' notice is appreciated for custom orders."
 }

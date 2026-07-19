@@ -1,5 +1,5 @@
 // ============================================================
-// MD Cakes â€” Shared Data Loader
+// MD Cakes – Shared Data Loader
 // Fetches data.json (cakes, prices, contact info) and exposes
 // it to every page. Falls back to sensible defaults if the
 // file can't be loaded (e.g. opened locally without a server).
@@ -12,7 +12,7 @@ const SITE_DATA_DEFAULTS = {
     phoneDial: "+94767041647",
     whatsapp: "94767041647",
     email: "seronjeyaseelan@gmail.com",
-    hours: "Mon â€“ Sat: 9:00 AM â€“ 8:00 PM<br>Sunday: 10:00 AM â€“ 4:00 PM"
+    hours: "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM"
   },
   categories: [],
   menuNote: ""
