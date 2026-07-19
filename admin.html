@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin â€” MD Cakes</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  body{ background:var(--cream-deep); }
+  .admin-wrap{ max-width:900px; margin:0 auto; padding:40px 24px 100px; }
+  .admin-header{ margin-bottom:36px; }
+  .admin-header h1{ font-size:2rem; margin-bottom:8px; }
+  .admin-header p{ color:var(--choc-soft); }
+
+  .panel{
+    background:#fff; border-radius:20px; padding:28px 30px; margin-bottom:26px;
+    border:1px solid var(--line);
+  }
+  .panel h2{ font-size:1.2rem; margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+  .panel h2 .badge{
+    font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; font-weight:700;
+    background:var(--cream-deep); color:var(--raspberry-deep); padding:3px 10px; border-radius:100px;
+  }
+
+  .row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .row.full{ grid-template-columns:1fr; }
+  label{ display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--choc-soft); margin-bottom:6px; }
+  input, textarea{
+    width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid var(--line);
+    font-family:'Quicksand'; font-size:.95rem; color:var(--choc); background:var(--cream);
+  }
+  textarea{ min-height:70px; resize:vertical; }
+  input:focus, textarea:focus{ outline:none; border-color:var(--raspberry); }
+
+  .btn{
+    border:none; cursor:pointer; font-family:'Quicksand'; font-weight:700; font-size:.9rem;
+    padding:11px 22px; border-radius:100px; transition:transform .15s, opacity .15s;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-save{ background:var(--raspberry); color:#fff; }
+  .btn-add{ background:var(--sage); color:#fff; }
+  .btn-delete{ background:transparent; color:#B0433F; border:1.5px solid #B0433F; padding:9px 16px; font-size:.82rem; }
+  .btn-secondary{ background:var(--choc); color:var(--cream); }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
+
+  .cat-block{ border:1px dashed var(--line); border-radius:14px; padding:20px; margin-bottom:18px; }
+  .cat-title-row{ display:flex; gap:12px; align-items:center; margin-bottom:16px; }
+  .cat-title-row input{ font-family:'Fraunces'; font-weight:600; font-size:1.05rem; }
+  .item-block{
+    display:grid; grid-template-columns:1fr 1fr 140px auto; gap:10px; align-items:start;
+    padding:12px 0; border-bottom:1px solid var(--line);
+  }
+  .item-block:last-of-type{ border-bottom:none; }
+  .item-block textarea{ min-height:44px; }
+
+  .toolbar{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+
+  .login-box{
+    max-width:440px; margin:80px auto; background:#fff; border-radius:20px; padding:36px 32px;
+    border:1px solid var(--line); text-align:center;
+  }
+  .login-box h1{ font-size:1.5rem; margin-bottom:10px; }
+  .login-box p{ color:var(--choc-soft); font-size:.92rem; margin-bottom:22px; line-height:1.5; }
+  .login-box input{ margin-bottom:14px; }
+  .login-box .btn-save{ width:100%; }
+  .login-note{
+    background:var(--cream-deep); border-radius:12px; padding:14px 16px; font-size:.82rem;
+    color:var(--choc-soft); text-align:left; margin-top:18px; line-height:1.6;
+  }
+
+  .status-bar{
+    position:fixed; bottom:0; left:0; right:0; background:var(--choc); color:var(--cream);
+    padding:14px 24px; display:none; align-items:center; justify-content:space-between; gap:16px;
+    font-size:.9rem; z-index:50;
+  }
+  .status-bar.show{ display:flex; }
+  .status-bar.error{ background:#7A2E2A; }
+  .status-bar.success{ background:#3F5A38; }
+
+  .top-actions{ display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+</style>
+</head>
+<body>
+
+<div class="admin-wrap">
+
+  <!-- ============ LOGIN SCREEN ============ -->
+  <div id="loginScreen" class="login-box">
+    <h1>MD Cakes Admin</h1>
+    <p>Connect your GitHub account to edit the website. Changes save directly to the live site.</p>
+    <label for="ghToken">GitHub Personal Access Token</label>
+    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <label for="ghRepo">Repository (username/repo)</label>
+    <input type="text" id="ghRepo" placeholder="zero-creation2008/MD-CAKE-HAVEN" value="zero-creation2008/MD-CAKE-HAVEN">
+    <button class="btn btn-save" onclick="connectGitHub()">Connect &amp; Unlock</button>
+    <div class="login-note">
+      <strong>First time?</strong> Create a token at GitHub â†’ Settings â†’ Developer settings â†’ Personal access tokens â†’ Fine-grained tokens. Give it <strong>read + write access to "Contents"</strong> for this one repository only. Your token stays in this browser only â€” don't share it.
+    </div>
+  </div>
+
+  <!-- ============ ADMIN PANEL (shown after login) ============ -->
+  <div id="adminScreen" style="display:none;">
+    <div class="admin-header">
+      <h1>MD Cakes â€” Admin Panel</h1>
+      <p>Edit your cakes, prices and contact details. Click <strong>Save Changes</strong> to publish live for everyone.</p>
+    </div>
+
+    <div class="top-actions">
+      <span id="connectedAs" style="color:var(--choc-soft); font-size:.88rem;"></span>
+      <button class="btn btn-secondary" onclick="logout()">Disconnect</button>
+    </div>
+
+    <!-- CONTACT DETAILS -->
+    <div class="panel">
+      <h2>Contact Details <span class="badge">Live on all pages</span></h2>
+      <div class="row full">
+        <div>
+          <label for="f_address">Address (use &lt;br&gt; for line breaks)</label>
+          <textarea id="f_address"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="f_phone">Phone (display)</label>
+          <input type="text" id="f_phone" placeholder="+94 76 704 1647">
+        </div>
+        <div>
+          <label for="f_phoneDial">Phone (dial format, no spaces)</label>
+          <input type="text" id="f_phoneDial" placeholder="+94767041647">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="f_whatsapp">WhatsApp Number (country code, no + or spaces)</label>
+          <input type="text" id="f_whatsapp" placeholder="94767041647">
+        </div>
+        <div>
+          <label for="f_email">Email</label>
+          <input type="email" id="f_email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="row full">
+        <div>
+          <label for="f_hours">Opening Hours (use &lt;br&gt; for line breaks)</label>
+          <textarea id="f_hours"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU / CAKES -->
+    <div class="panel">
+      <h2>Cakes &amp; Prices <span class="badge">Menu Page</span></h2>
+      <div id="categoriesContainer"></div>
+      <div class="toolbar">
+        <button class="btn btn-add" onclick="addCategory()">+ Add Category</button>
+      </div>
+      <div class="row full" style="margin-top:20px;">
+        <div>
+          <label for="f_menuNote">Menu Note (shown at bottom of menu page)</label>
+          <textarea id="f_menuNote"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar" style="margin-bottom:60px;">
+      <button class="btn btn-save" id="saveBtn" onclick="saveToGitHub()">ðŸ’¾ Save Changes (Publish Live)</button>
+      <button class="btn btn-secondary" onclick="reloadData()">â†º Reload from Live Site</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="status-bar" id="statusBar">
+  <span id="statusText"></span>
+  <button class="btn" style="background:transparent; color:var(--cream); border:1px solid var(--cream);" onclick="hideStatus()">Close</button>
+</div>
+
+<script>
+  let currentData = null;
+  let currentFileSha = null; // needed for GitHub update API
+
+  // ---------- Auth ----------
+  function connectGitHub() {
+    const token = document.getElementById('ghToken').value.trim();
+    const repo = document.getElementById('ghRepo').value.trim();
+    if (!token || !repo || !repo.includes('/')) {
+      showStatus('Please enter a valid token and repository (username/repo).', 'error');
+      return;
+    }
+    localStorage.setItem('mdcakes_gh_token', token);
+    localStorage.setItem('mdcakes_gh_repo', repo);
+    unlockAdmin();
+  }
+
+  function logout() {
+    localStorage.removeItem('mdcakes_gh_token');
+    localStorage.removeItem('mdcakes_gh_repo');
+    document.getElementById('adminScreen').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'block';
+  }
+
+  function getAuth() {
+    return {
+      token: localStorage.getItem('mdcakes_gh_token'),
+      repo: localStorage.getItem('mdcakes_gh_repo')
+    };
+  }
+
+  async function unlockAdmin() {
+    const { token, repo } = getAuth();
+    if (!token || !repo) return;
+
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminScreen').style.display = 'block';
+    document.getElementById('connectedAs').textContent = `Connected to ${repo}`;
+
+    await reloadData();
+  }
+
+  // ---------- Load data.json from GitHub (so admin always edits the true live version) ----------
+  async function reloadData() {
+    const { token, repo } = getAuth();
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/contents/data.json`, {
+        headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' }
+      });
+      if (!res.ok) throw new Error(`GitHub returned ${res.status}`);
+      const fileData = await res.json();
+      currentFileSha = fileData.sha;
+      const decoded = decodeURIComponent(escape(atob(fileData.content)));
+      currentData = JSON.parse(decoded);
+      renderForm(currentData);
+      showStatus('Loaded latest data from GitHub.', 'success');
+    } catch (e) {
+      showStatus('Could not load data.json from GitHub: ' + e.message, 'error');
+    }
+  }
+
+  // ---------- Render form from data ----------
+  function renderForm(data) {
+    document.getElementById('f_address').value = data.contact.address || '';
+    document.getElementById('f_phone').value = data.contact.phone || '';
+    document.getElementById('f_phoneDial').value = data.contact.phoneDial || '';
+    document.getElementById('f_whatsapp').value = data.contact.whatsapp || '';
+    document.getElementById('f_email').value = data.contact.email || '';
+    document.getElementById('f_hours').value = data.contact.hours || '';
+    document.getElementById('f_menuNote').value = data.menuNote || '';
+
+    const container = document.getElementById('categoriesContainer');
+    container.innerHTML = '';
+    (data.categories || []).forEach((cat, ci) => renderCategory(cat, ci));
+  }
+
+  function renderCategory(cat, ci) {
+    const container = document.getElementById('categoriesContainer');
+    const block = document.createElement('div');
+    block.className = 'cat-block';
+    block.dataset.catIndex = ci;
+
+    block.innerHTML = `
+      <div class="cat-title-row">
+        <input type="text" value="${escapeAttr(cat.name)}" class="cat-name-input" placeholder="Category name">
+        <button class="btn btn-delete" onclick="deleteCategory(${ci})">Delete Category</button>
+      </div>
+      <div class="items-container"></div>
+      <div class="toolbar">
+        <button class="btn btn-add" onclick="addItem(${ci})">+ Add Cake</button>
+      </div>
+    `;
+    container.appendChild(block);
+
+    const itemsContainer = block.querySelector('.items-container');
+    (cat.items || []).forEach((item, ii) => renderItem(itemsContainer, ci, ii, item));
+  }
+
+  function renderItem(itemsContainer, ci, ii, item) {
+    const row = document.createElement('div');
+    row.className = 'item-block';
+    row.dataset.itemIndex = ii;
+    row.innerHTML = `
+      <div>
+        <label>Cake Name</label>
+        <input type="text" class="item-name" value="${escapeAttr(item.name)}">
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea class="item-desc">${escapeHtml(item.desc || '')}</textarea>
+      </div>
+      <div>
+        <label>Price</label>
+        <input type="text" class="item-price" value="${escapeAttr(item.price)}">
+      </div>
+      <div style="padding-top:22px;">
+        <button class="btn btn-delete" onclick="deleteItem(${ci}, ${ii})">âœ•</button>
+      </div>
+    `;
+    itemsContainer.appendChild(row);
+  }
+
+  // ---------- Data mutation helpers (read current form state back into currentData) ----------
+  function syncFormToData() {
+    currentData.contact.address = document.getElementById('f_address').value;
+    currentData.contact.phone = document.getElementById('f_phone').value;
+    currentData.contact.phoneDial = document.getElementById('f_phoneDial').value;
+    currentData.contact.whatsapp = document.getElementById('f_whatsapp').value;
+    currentData.contact.email = document.getElementById('f_email').value;
+    currentData.contact.hours = document.getElementById('f_hours').value;
+    currentData.menuNote = document.getElementById('f_menuNote').value;
+
+    const catBlocks = document.querySelectorAll('.cat-block');
+    const newCategories = [];
+    catBlocks.forEach(block => {
+      const name = block.querySelector('.cat-name-input').value;
+      const items = [];
+      block.querySelectorAll('.item-block').forEach(itemRow => {
+        items.push({
+          name: itemRow.querySelector('.item-name').value,
+          desc: itemRow.querySelector('.item-desc').value,
+          price: itemRow.querySelector('.item-price').value
+        });
+      });
+      newCategories.push({ name, items });
+    });
+    currentData.categories = newCategories;
+  }
+
+  function addCategory() {
+    syncFormToData();
+    currentData.categories.push({ name: 'New Category', items: [] });
+    renderForm(currentData);
+  }
+
+  function deleteCategory(ci) {
+    syncFormToData();
+    if (!confirm('Delete this whole category and its cakes?')) return;
+    currentData.categories.splice(ci, 1);
+    renderForm(currentData);
+  }
+
+  function addItem(ci) {
+    syncFormToData();
+    currentData.categories[ci].items.push({ name: 'New Cake', desc: '', price: 'Rs. 0' });
+    renderForm(currentData);
+  }
+
+  function deleteItem(ci, ii) {
+    syncFormToData();
+    currentData.categories[ci].items.splice(ii, 1);
+    renderForm(currentData);
+  }
+
+  // ---------- Save to GitHub ----------
+  async function saveToGitHub() {
+    syncFormToData();
+    const { token, repo } = getAuth();
+    const saveBtn = document.getElementById('saveBtn');
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+
+    try {
+      const content = JSON.stringify(currentData, null, 2);
+      const encoded = btoa(unescape(encodeURIComponent(content)));
+
+      const res = await fetch(`https://api.github.com/repos/${repo}/contents/data.json`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Update site data via admin panel',
+          content: encoded,
+          sha: currentFileSha
+        })
+      });
+
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.message || `GitHub returned ${res.status}`);
+      }
+
+      const result = await res.json();
+      currentFileSha = result.content.sha;
+      showStatus('Saved! Changes are live (GitHub Pages may take 1â€“2 minutes to update).', 'success');
+    } catch (e) {
+      showStatus('Save failed: ' + e.message, 'error');
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'ðŸ’¾ Save Changes (Publish Live)';
+    }
+  }
+
+  // ---------- Utilities ----------
+  function escapeAttr(str) {
+    return escapeHtml(str).replace(/"/g, '&quot;');
+  }
+  function escapeHtml(str) {
+    if (str === undefined || str === null) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function showStatus(msg, type) {
+    const bar = document.getElementById('statusBar');
+    const text = document.getElementById('statusText');
+    text.textContent = msg;
+    bar.className = 'status-bar show ' + (type || '');
+  }
+  function hideStatus() {
+    document.getElementById('statusBar').classList.remove('show');
+  }
+
+  // ---------- Auto-login if token already saved ----------
+  window.addEventListener('load', () => {
+    const { token, repo } = getAuth();
+    if (token && repo) {
+      document.getElementById('ghToken').value = token;
+      document.getElementById('ghRepo').value = repo;
+      unlockAdmin();
+    }
+  });
+</script>
+
+</body>
+</html>
