@@ -137,7 +137,10 @@
   for (let i = 1; i <= MAX_PHOTOS_TO_CHECK; i++) {
     const img = new Image();
     const url = `${PHOTO_BASE_URL}${encodeURIComponent(` (${i}).jpg`)}`;
+<<<<<<< HEAD
     const designName = `Cake Design (${i})`;
+=======
+>>>>>>> 1838efe94d80a2abba108ef973b0695a0442ca8e
 
     img.onload = function () {
       const item = document.createElement('div');
