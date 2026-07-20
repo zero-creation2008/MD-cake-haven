@@ -8,10 +8,10 @@
 const SITE_DATA_DEFAULTS = {
   contact: {
     address: "Old Road, Kopay, Irupalai<br>Near Pyramid Education Centre<br>Jaffna, Sri Lanka",
-    phone: "+94 76 704 1647",
-    phoneDial: "+94767041647",
-    whatsapp: "94767041647",
-    email: "seronjeyaseelan@gmail.com",
+    phone: "+94 76 123 4567",
+    phoneDial: "+94761234567",
+    whatsapp: "94761234567",
+    email: "abcd@gmail.com",
     hours: "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM"
   },
   categories: [],
