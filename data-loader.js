@@ -8,10 +8,10 @@
 const SITE_DATA_DEFAULTS = {
   contact: {
     address: "Old Road, Kopay, Irupalai<br>Near Pyramid Education Centre<br>Jaffna, Sri Lanka",
-    phone: "+94 76 704 1647",
-    phoneDial: "+94767041647",
-    whatsapp: "94767041647",
-    email: "seronjeyaseelan@gmail.com",
+    phone: "1234567",
+    phoneDial: "1234567",
+    whatsapp: "1234567",
+    email: "abc@gmail.com",
     hours: "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM"
   },
   categories: [],
@@ -21,7 +21,7 @@ const SITE_DATA_DEFAULTS = {
 async function loadSiteData() {
   try {
     // Cache-bust so visitors always get the latest saved data
-    const res = await fetch(`data.json?t=${Date.now()}`);
+    const res = await fetch(`data.json?t=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error("data.json not found");
     // Explicitly decode as UTF-8 regardless of server-sent headers,
     // so characters like — and – never turn into garbled symbols.
@@ -63,6 +63,7 @@ function applySocialLink(platform, url) {
       el.style.display = 'none';
     }
   });
+}
 
 function renderMenu(data) {
   const container = document.getElementById('menuContainer');

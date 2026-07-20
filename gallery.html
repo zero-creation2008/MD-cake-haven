@@ -124,45 +124,55 @@
   const PHOTO_BASE_URL = "https://raw.githubusercontent.com/zero-creation2008/MD-cake-haven/main/Photos/";
   const MAX_PHOTOS_TO_CHECK = 1000;
 
-  let OWNER_WHATSAPP_NUMBER = "94767041647"; // fallback, overwritten by data.json
+  let OWNER_WHATSAPP_NUMBER = "1234567"; // fallback, overwritten by data.json
 
   const grid = document.getElementById('galleryGrid');
   let foundCount = 0;
-  let checkedCount = 0;
 
-  function checkDone() {
-    checkedCount++;
+  // Load photos one at a time (not all 1000 at once) to avoid
+  // overwhelming GitHub's server. Stop after several photos in a
+  // row are missing — that means we've reached the end.
+  async function loadGalleryPhotos() {
+    let consecutiveMisses = 0;
+    const MAX_CONSECUTIVE_MISSES = 6;
+
+    for (let i = 1; i <= MAX_PHOTOS_TO_CHECK; i++) {
+      const url = `${PHOTO_BASE_URL}${encodeURIComponent(` (${i}).jpg`)}`;
+      const designName = `Cake Design (${i})`;
+
+      const exists = await checkImageExists(url);
+
+      if (exists) {
+        consecutiveMisses = 0;
+        const item = document.createElement('div');
+        item.className = 'g-item';
+        const displayImg = document.createElement('img');
+        displayImg.src = url;
+        displayImg.alt = `MD Cakes photo ${i}`;
+        displayImg.loading = 'lazy';
+        item.appendChild(displayImg);
+        item.addEventListener('click', () => openLightbox(url, designName));
+        grid.appendChild(item);
+        foundCount++;
+      } else {
+        consecutiveMisses++;
+        if (consecutiveMisses >= MAX_CONSECUTIVE_MISSES && foundCount > 0) {
+          break; // reached the end of the numbered sequence
+        }
+      }
+    }
   }
 
-  for (let i = 1; i <= MAX_PHOTOS_TO_CHECK; i++) {
-    const img = new Image();
-    const url = `${PHOTO_BASE_URL}${encodeURIComponent(` (${i}).jpg`)}`;
-<<<<<<< HEAD
-    const designName = `Cake Design (${i})`;
-=======
->>>>>>> 1838efe94d80a2abba108ef973b0695a0442ca8e
-
-    img.onload = function () {
-      const item = document.createElement('div');
-      item.className = 'g-item';
-      const displayImg = document.createElement('img');
-      displayImg.src = url;
-      displayImg.alt = `MD Cakes photo ${i}`;
-      displayImg.loading = 'lazy';
-      item.appendChild(displayImg);
-      item.addEventListener('click', () => openLightbox(url, designName));
-      grid.appendChild(item);
-      foundCount++;
-      checkDone();
-    };
-
-    img.onerror = function () {
-      // No photo at this number — skip silently, no empty space left behind
-      checkDone();
-    };
-
-    img.src = url;
+  function checkImageExists(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
   }
+
+  loadGalleryPhotos();
 
   // ---------- Lightbox ----------
   function openLightbox(imgUrl, designName) {

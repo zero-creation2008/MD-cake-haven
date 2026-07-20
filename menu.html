@@ -92,9 +92,9 @@
     <div>
       <h5>Get In Touch</h5>
       <ul>
-        <li><a href="tel:+94767041647">+94 76 704 1647</a></li>
-        <li><a href="mailto:seronjeyaseelan@gmail.com">seronjeyaseelan@gmail.com</a></li>
-        <li>Old Road, Kopay, Irupalai</li>
+        <li><a href="#" data-field="phoneFooter">Loading...</a></li>
+        <li><a href="#" data-field="emailFooter">Loading...</a></li>
+        <li data-field="addressFooter">Loading...</li>
       </ul>
     </div>
   </div>
@@ -105,6 +105,7 @@
 <script>
   loadSiteData().then(data => {
     renderMenu(data);
+    applyContactToPage(data.contact);
   });
 </script>
 </body>

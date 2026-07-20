@@ -1,22 +1,14 @@
 {
   "contact": {
     "address": "Old Road, Kopay, Irupalai<br>Near Pyramid Education Centre<br>Jaffna, Sri Lanka",
-<<<<<<< HEAD
-    "phone": "+94 76 704 1647",
-    "phoneDial": "+94767041647",
-    "whatsapp": "94767041647",
-    "email": "seronjeyaseelan@gmail.com",
+    "phone": "1234567",
+    "phoneDial": "1234567",
+    "whatsapp": "1234567",
+    "email": "abc@gmail.com",
     "hours": "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM",
     "instagram": "https://instagram.com/mdcakes",
     "facebook": "https://facebook.com/mdcakes",
     "youtube": "https://youtube.com/@mdcakes"
-=======
-    "phone": "+94 774857896",
-    "phoneDial": "+94774857896",
-    "whatsapp": "94774857896",
-    "email": "checkemail.com",
-    "hours": "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM"
->>>>>>> 1838efe94d80a2abba108ef973b0695a0442ca8e
   },
   "categories": [
     {
