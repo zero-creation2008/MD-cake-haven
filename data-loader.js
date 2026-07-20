@@ -8,10 +8,10 @@
 const SITE_DATA_DEFAULTS = {
   contact: {
     address: "Old Road, Kopay, Irupalai<br>Near Pyramid Education Centre<br>Jaffna, Sri Lanka",
-    phone: "+94 76 123 4567",
-    phoneDial: "+94761234567",
-    whatsapp: "94761234567",
-    email: "abcd@gmail.com",
+    phone: "1234567",
+    phoneDial: "1234567",
+    whatsapp: "1234567",
+    email: "abc@gmail.com",
     hours: "Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM"
   },
   categories: [],
@@ -63,6 +63,7 @@ function applySocialLink(platform, url) {
       el.style.display = 'none';
     }
   });
+}
 
 function renderMenu(data) {
   const container = document.getElementById('menuContainer');
@@ -104,4 +105,4 @@ function escapeHtml(str) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
-}
+  }
